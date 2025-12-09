@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show Environment Variable
-        run: echo "O ambiente configurado é: $DEPLOY_ENV"
+        run: echo "O ambiente configurado é $DEPLOY_ENV"
