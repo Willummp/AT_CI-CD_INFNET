@@ -1,0 +1,4 @@
+* f4979ab Implement calculator endpoints, tests, and docker config
+* 6527a14 feat: Adiciona Docker e Docker Compose para a aplicação, incluindo serviços de banco de dados e cache.
+* e525354 Implement calculator endpoints and tests
+* d9a61a2 Initial commit: Project structure, pom.xml, and README

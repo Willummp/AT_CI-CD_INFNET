@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devcalc-deployment
+  namespace: tp2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devcalc
+  template:
+    metadata:
+      labels:
+        app: devcalc
+    spec:
+      containers:
+      - name: devcalc
+        # Substitua 'seu-usuario' pelo seu usuário do DockerHub ou use a imagem local se configurado
+        image: devcalc-api:1.0.0 
+        ports:
+        - containerPort: 7070
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /add?a=1&b=1
+            port: 7070
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /add?a=1&b=1
+            port: 7070
+          initialDelaySeconds: 10
+          periodSeconds: 5

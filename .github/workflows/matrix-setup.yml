@@ -1,0 +1,23 @@
+name: Java Matrix Test
+
+on: workflow_dispatch
+
+jobs:
+  matrix-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: ['17', '21'] 
+        # Nota: Java 11 pode ter problemas com versões recentes do Spring/Javalin se não configurado, 
+        # mas para o exercício 'hello world' funcionaria. Usando 17 e 21 como exemplo moderno.
+        
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Java ${{ matrix.java-version }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: 'temurin'
+        
+    - name: Check Java Version
+      run: java -version

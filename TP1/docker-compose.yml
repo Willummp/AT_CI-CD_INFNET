@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  devcalc-api:
+    build: .
+    ports:
+      - "7070:7070"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - devcalc-network
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: devcalc
+    volumes:
+      - devcalc-data:/var/lib/postgresql/data
+    networks:
+      - devcalc-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:6
+    networks:
+      - devcalc-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  tester:
+    image: busybox
+    command: sh -c "sleep 3600"
+    networks:
+      - devcalc-network
+    volumes:
+      - devcalc-data:/data
+
+volumes:
+  devcalc-data:
+
+networks:
+  devcalc-network:
