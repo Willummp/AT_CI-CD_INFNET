@@ -1,6 +1,6 @@
-# Projeto de DevOps - TP1, TP2 e TP3
+# Projeto de DevOps CI/CD - TP1, TP2 e TP3
 
-![CI Status](https://github.com/seu-usuario/seu-repo/actions/workflows/hello.yml/badge.svg)
+[![Maven CI](https://github.com/Willummp/AT_CI-CD_INFNET/actions/workflows/maven-ci.yml/badge.svg)](https://github.com/Willummp/AT_CI-CD_INFNET/actions/workflows/maven-ci.yml)
 
 **Aluno:** Lucas Ferreira
 **Disciplina:** DevOps / Arquitetura de Software
